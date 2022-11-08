@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kenzie.dynamodbscan.icecream.Phase1Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-11-07T01:41:23" hostname="MSI" time="1.534">
+  <properties/>
+  <testcase name="getSalesForTimePeriod_oneReceipt_salesMatch()" classname="com.kenzie.dynamodbscan.icecream.Phase1Test" time="0.534"/>
+  <testcase name="getSalesForTimePeriod_twoReceipts_salesMatch()" classname="com.kenzie.dynamodbscan.icecream.Phase1Test" time="0.601"/>
+  <testcase name="getSalesForTimePeriod_noReceipts_noSales()" classname="com.kenzie.dynamodbscan.icecream.Phase1Test" time="0.398"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

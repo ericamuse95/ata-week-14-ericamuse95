@@ -22,8 +22,30 @@ public class BalancedCurlyBraceValidator {
      */
     public boolean check(List<Character> fileCharacters) {
         // TODO: complete this method
-        return false;
+        //stack push { open then push { close
+        Stack<Character> stack = new Stack();
+        for(int i = 0; i < fileCharacters.size(); i++) {
+            char c = fileCharacters.get(i);
+            if(c == '[' || c == '(' || c == '{' ) {
+                stack.push(c);
+            } else if(c == ']') {
+                if(stack.isEmpty() || stack.pop() != '[') {
+                    return false;
+                }
+            } else if(c == ')') {
+                if(stack.isEmpty() || stack.pop() != '(') {
+                    return false;
+                }
+            } else if(c == '}') {
+                if(stack.isEmpty() || stack.pop() != '{') {
+                    return false;
+                }
+            }
+
+        }
+        return stack.isEmpty();
     }
+
 
     /**
      * Does the above and prints out debugging information. This can be combined into one method, but separating these
@@ -33,7 +55,37 @@ public class BalancedCurlyBraceValidator {
      */
     public boolean checkExtension(List<Character> fileCharacters) {
         // TODO: complete this method
-        return false;
+        int leftNum =0;
+        int rightNum = 0;
+        String string = "";
+        Stack<Character> stack = new Stack();
+        for(int i = 0; i < fileCharacters.size(); i++) {
+            char c = fileCharacters.get(i);
+            if(c == '[' || c == '(' || c == '{' ) {
+                stack.push(c);
+            } else if(c == ']') {
+                if(stack.isEmpty() || stack.pop() != '[') {
+                    leftNum++;
+                    return false;
+                }
+            } else if(c == ')') {
+                if(stack.isEmpty() || stack.pop() != '(') {
+                    rightNum++;
+                    return false;
+                }
+            } else if(c == '}') {
+                if(stack.isEmpty() || stack.pop() != '{') {
+                    string = stack.toString();
+                    return false;
+                }
+            }
+
+        }
+        System.out.println("Maximum unbalanced braces encountered: " + leftNum+rightNum);
+        System.out.println("Number of remaining unbalanced {: " + leftNum);
+        System.out.println("Number of remaining unbalanced }: " + rightNum);
+        System.out.println("Longest string between balanced braces: " + string);
+        return stack.isEmpty();
     }
 
     /**

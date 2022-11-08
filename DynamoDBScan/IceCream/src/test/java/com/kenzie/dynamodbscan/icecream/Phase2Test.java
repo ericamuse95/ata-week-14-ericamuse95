@@ -29,7 +29,7 @@ public class Phase2Test {
     private IceCreamParlorAdminService adminService;
 
     @BeforeEach
-    private void setup() {
+    public void setup() {
         service = DAGGER.provideIceCreamParlorService();
         adminService = DAGGER.provideIceCreamParlorAdminService();
 
