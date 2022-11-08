@@ -1,12 +1,16 @@
 package com.kenzie.stacks.sentencebuilder;
 
+import java.util.Stack;
+
 public class SentenceBuilder {
+
+    private Stack<String> sentenceBuilder;
 
     /**
      * Constructor.
      */
     public SentenceBuilder() {
-
+            sentenceBuilder = new Stack<>();
     }
 
     /**
@@ -14,7 +18,7 @@ public class SentenceBuilder {
      * @param word to be added to the sentence.
      */
     public void addWord(String word) {
-
+            sentenceBuilder.push(word);
     }
 
     /**
@@ -22,7 +26,11 @@ public class SentenceBuilder {
      * @return The word most recently added to the sentence, if any; null, otherwise.
      */
     public String undo() {
-        return "";
+        if (sentenceBuilder.empty()) {
+            return null;
+        } else {
+            return sentenceBuilder.pop();
+        }
     }
 
     /**
@@ -30,6 +38,6 @@ public class SentenceBuilder {
      * @return string representation of the words currently in the sentence.
      */
     public String getSentenceWords() {
-        return "[]";
+        return sentenceBuilder.toString();
     }
 }

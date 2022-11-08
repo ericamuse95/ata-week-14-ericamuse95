@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.kenzie.dynamodbscan.clothingstore.DynamoDbClientProvider;
 
 import java.util.Collections;
@@ -32,7 +33,13 @@ public class ClothingDao {
      * @return the list of clothing retrieved from the database
      */
     public List<Clothing> scanByClothingType(final String clothingType) {
-        //TODO: replace the below code
-        return Collections.emptyList();
+        //replace the below code
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":clothingTypeToScan", new AttributeValue().withS(clothingType));
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+                .withFilterExpression("clothingType = :clothingTypeToScan")
+                .withExpressionAttributeValues(valueMap);
+        PaginatedScanList<Clothing> clothesList = mapper.scan(Clothing.class, scanExpression);
+        return clothesList;
     }
 }
